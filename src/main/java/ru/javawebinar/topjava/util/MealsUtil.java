@@ -10,8 +10,6 @@ import java.time.Month;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.function.Function.identity;
-
 public class MealsUtil {
   public static final List<Meal> MEALS = Arrays.asList(
       new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак", 500),
@@ -68,12 +66,12 @@ public class MealsUtil {
         .collect(Collectors.groupingBy(Meal::getDate)).values();
 
     return listDayMeals
-        .stream().map(dayMeals -> {
+        .stream().flatMap(dayMeals -> {
           boolean exceed = dayMeals.stream().mapToInt(Meal::getCalories).sum() > caloriesPerDay;
           return dayMeals.stream().filter(meal ->
               DateTimeUtil.isBetween(meal.getTime(), startTime, endTime))
               .map(meal -> createWithExceed(meal, exceed));
-        }).flatMap(identity())
+        })
         .collect(Collectors.toList());
   }
 
