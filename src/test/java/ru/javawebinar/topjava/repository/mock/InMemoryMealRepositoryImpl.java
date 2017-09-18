@@ -20,7 +20,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static ru.javawebinar.topjava.repository.mock.InMemoryUserRepositoryImpl.ADMIN_ID;
+import static ru.javawebinar.topjava.UserTestData.ADMIN_ID;
+import static ru.javawebinar.topjava.UserTestData.USER_ID;
 
 @Repository
 public class InMemoryMealRepositoryImpl implements MealRepository {
@@ -30,7 +31,7 @@ public class InMemoryMealRepositoryImpl implements MealRepository {
   private AtomicInteger counter = new AtomicInteger(0);
 
   {
-    MealsUtil.MEALS.forEach(um -> save(um, InMemoryUserRepositoryImpl.USER_ID));
+    MealsUtil.MEALS.forEach(um -> save(um, USER_ID));
 
     save(new Meal(LocalDateTime.of(2015, Month.JUNE, 1, 14, 0), "Админ ланч", 510), ADMIN_ID);
     save(new Meal(LocalDateTime.of(2015, Month.JUNE, 1, 21, 0), "Админ ужин", 1500), ADMIN_ID);
