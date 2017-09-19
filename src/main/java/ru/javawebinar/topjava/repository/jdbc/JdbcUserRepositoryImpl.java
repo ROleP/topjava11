@@ -44,7 +44,7 @@ public class JdbcUserRepositoryImpl implements UserRepository {
         .addValue("password", user.getPassword())
         .addValue("registered", user.getRegistered())
         .addValue("enabled", user.isEnabled())
-        .addValue("calories_per_day", user.getCaloriesPerDay());
+        .addValue("caloriesPerDay", user.getCaloriesPerDay());
 
     if (user.isNew()) {
       Number newKey = insertUser.executeAndReturnKey(map);
