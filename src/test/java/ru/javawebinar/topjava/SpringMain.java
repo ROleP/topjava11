@@ -29,7 +29,7 @@ public class SpringMain {
     appCtx.close();
     */
 
-    try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml")) {
+    try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/mock.xml")) {
       System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
       AdminRestController adminRestController = appCtx.getBean(AdminRestController.class);
       adminRestController.create(new User(null, "username", "email", "password", Role.ROLE_ADMIN));
